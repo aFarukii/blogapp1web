@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "_Layout";
+}
+@model SettingsViewModel
+<body class="">
+    <!--Setting Section-->
+        @if (ViewBag.Message != null)
+        {
+            <div class="p-4 m-2 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400">
+                <span class="font-medium">Successfully Changed</span> @ViewBag.Message
+            </div>
+        }
+    <div class="text-center container mx-auto w-3/4 m-6 rounded-md" style="background-color: #f8fafc;">
+
+        <!--Form Section-->
+        <div class=" p-6">
+            <h3 class="uppercase font-oswald font-semibold text-black mb-4  text-shadow  text-3xl">Settings</h3>
+            <form class=" w-full" method="post" enctype="multipart/form-data">
+                <div class="flex items-center  text-left mb-10">
+                    <label for="Username" class=" text-sm  font-medium mb-2  w-2/12">Username</label>
+                    <input type="username" id="Username" name="username"class="py-3 px-4 w-full border-2 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="@Model.username">
+                </div>
+                <div class="flex items-center mb-10 text-left">
+                    <label for="email" class=" text-sm  font-medium mb-2  w-2/12">Email</label>
+                    <input type="email" id="email" name="email" class="py-3 px-4 w-full border-2 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="@Model.email">
+                </div>
+                <div class="flex items-center mb-10 text-left">
+                    <label for="password" class=" text-sm  font-medium mb-2  w-2/12">Password</label>
+                    <input type="password" id="password" name="password" class="py-3 px-4 w-full border-2 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="@Model.password">
+                </div>
+                <div class="flex items-center mb-10 text-left">
+                    <label for="ProfilePicture" class=" text-sm  font-medium mb-2  w-2/12">ProfilePicture</label>
+                    <input type="file"  accept="image/*" id="ProfilePicture" name="ProfilePicture" class="py-3 px-4 w-full border-2 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+                </div>
+                <button class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+                        type="submit">
+                    Save
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+

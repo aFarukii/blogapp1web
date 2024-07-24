@@ -1,0 +1,105 @@
+﻿@model RegistrationViewModel
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+
+</head>
+@{
+    string port = "7143";
+}
+<body class="bg-gray-500">
+    <!--Header Section-->
+    <header class=" py-4 lg:py-8  font-Abel uppercase bg-my-black text-my-blue ">
+        <!--Container Section-->
+        <div class="container flex items-center justify-between  space-x-12 lg:space-x-16 mx-auto">
+            <!--Logo-->
+            <a href="/"
+               class="text-2xl lg:text-3xl font-bold text-yellow-300  lg:ml-5 ml-2 hover:text-yellow-200 hover:shadow-yellow-50  transition duration-200 whitespace-nowrap">
+                ARI
+                BLOG
+            </a>
+            <!--Navbar-->
+            <nav class="flex  text-end">
+                <!--Menu-->
+                <div class="flex items-center space-x-10 ">
+                    <a href="/" class=" hover:text-navy-blue transition duration-200">home</a>
+                    <a href="/home/blog" class=" hover:text-navy-blue transition duration-200">blog</a>
+                    <a href="/home/about" class=" hover:text-navy-blue transition duration-200">about</a>
+                    <a href="/home/status" class=" hover:text-navy-blue transition duration-200">Status</a>
+
+
+                </div>
+
+        </div>
+    </header>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="p-4 m-2 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400">
+            <span class="font-medium">Successfully Registered</span> @ViewBag.Message
+        </div>
+    }
+
+    <!--Login Section-->
+    <div class="text-center container mx-auto w-1/3 m-6 bg-black opacity-80 shadow-lg shadow-blue-500/50   rounded-xl ">
+        <!--Form Section-->
+        <div class="w1/3 p-6">
+            <h3 class="uppercase font-oswald font-semibold text-cyan-500 shadow text-shadow rounded-xl text-3xl">register</h3>
+
+
+            <form method="post" class="max-w-sm mx-auto">
+                <div class="mb-5">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                    <input type="email" id="email" asp-for="email" name="email"
+                           class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                           placeholder="Email" required />
+                </div>
+                <div class="mb-5">
+                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Your
+                        username
+                    </label>
+                    <input type="text" id="username" asp-for="username" name="username"
+                           class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                           placeholder="Username" required />
+                </div>
+                <div class="mb-5">
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Your
+                        password
+                    </label>
+                    <input type="password" id="password" asp-for="password" name="password"
+                           class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                           placeholder="Password" required />
+                </div>
+                <div class="mb-5">
+                    <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Repeat
+                        password
+                    </label>
+                    <input type="password" id="confirmPassword" name="confirmPassword"
+                           class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                           placeholder="Password" required />
+                </div>
+                <button type="submit"
+                        class="text-white mb-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Register
+                    new account
+                </button>
+                <div class="">
+                    <a class="text-white " href="/auth/login">Already have account?</a>
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </div>
+</body>
+
+</html>

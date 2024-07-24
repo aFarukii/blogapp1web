@@ -1,0 +1,94 @@
+﻿@{
+@model TopPostsViewModel;
+    Layout = "_Layout";
+}
+@using WebApplication1.Entities
+@using System.Security.Claims;
+<body>
+   
+
+    <!--Page Area-->
+    <div class="flex justify-center ">
+
+        <!--Blog Section-->
+        <div class="w-2/3 ">
+            <!--Title-->
+            <h2 class="font-bold uppercase text-2xl p-2  text-center text-yellow-400 text-shadow-sm shadow-yellow-300">
+                Posts
+            </h2>
+            @if (Context.User.Identity.Name != null)
+            {
+                <!--Create Post-->
+                <div class="text-black">
+
+                    <form class="mb-5" method="post">
+
+                        <div class="relative w-full">
+                            <div class="relative w-full min-w-[200px]">
+                                <textarea rows="8"
+                                          class="peer h-full min-h-[100px] w-full !resize-none  rounded-[7px] border border-blue-gray-200  bg-transparent px-3 py-2.5 font-sans text-sm font-normal border-gray-500 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
+                                          placeholder=" " name="content" asp-for="content"></textarea>
+                                <label class="border-gray-300 before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                    Your Comment
+                                </label>
+                            </div>
+                            <div class="w-full items-end py-1.5 text-right">
+                                <button class="select-none rounded-md bg-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                        type="submit">
+                                    Post Comment
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            }
+            <div class="bg-gray-100 shadow-lg shadow-yellow-500/50  rounded-xl   ">
+                @foreach (var post in Model.Posts)
+                {
+                <!--Post Section-->
+                <div class="flex items-center border-b-2 border-yellow-400  border-opacity-40 rounded-sm pb-3">
+
+                    <!--Profile Photo-->
+                        <div class="rounded-full bg-slate-300 m-3">
+                            @if (@post.User.ProfilePic?.FileName != null)
+                            {
+                                <img class="inline-block h-10 w-10 rounded-full  ring-white" src="data:image/jpeg;base64,@Convert.ToBase64String(post.User.ProfilePic.Content)" alt="Alternate Text" style="width:45px; height:45px " />
+
+
+                            }
+                            else
+                            {
+                                <img class="inline-block h-10 w-10 rounded-full  ring-white" src="/data/blank-profile-picture-973460_640.png" style="width:45px; height:45px " alt="">
+
+                                
+                            }
+                        </div>
+                    <!--Post Details-->
+                    <div class="flex-1">
+                        <p>@post.User.username</p>
+                        <p>@post.content</p>
+                            <p></p>
+
+                    </div>
+                    <div>
+                        <p class="mr-3 opacity-50">@post.CreationDate</p>
+                    </div>
+                </div>
+                    
+                }
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            let dropdownMenuButton = document.querySelector('#dropdownMenu')
+            dropdownMenuButton.classList.toggle("hidden")
+
+        }
+    </script>
+</body>
+
+</html>

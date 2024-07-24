@@ -1,0 +1,123 @@
+﻿@using System.Security.Claims;
+@model LayoutViewModel;
+<!doctype html>
+<html >
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/styles.css" />
+
+</head>
+@{
+
+    string port = "7143";
+}      
+<!--Header Section-->
+<header class=" py-4 lg:py-8  font-Abel uppercase bg-my-black text-my-blue ">
+    <!--Container Section-->
+    <div class="container flex items-center justify-between  space-x-12 lg:space-x-16 mx-auto">
+        <!--Logo-->
+        <a href="https://localhost:@port/"
+           class="text-2xl lg:text-3xl font-bold text-yellow-300  lg:ml-5 ml-2 hover:text-yellow-200 hover:shadow-yellow-50  transition duration-200 whitespace-nowrap">
+            ARI
+            BLOG
+        </a>
+        <!--Navbar-->
+        <nav class="flex flex-1 justify-between overflow-hidden">
+            <!--Menu-->
+            <div class="flex items-center space-x-10 ">
+                <a href="/" class=" hover:text-navy-blue transition duration-200">home</a>
+                <a href="/home/blog" class=" hover:text-navy-blue transition duration-200">blog</a>
+                <a href="/home/about" class=" hover:text-navy-blue transition duration-200">about</a>
+                <a href="/home/status" class=" hover:text-navy-blue transition duration-200">Status</a>
+            </div>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <!--Logout Area-->
+                <div class="menu">
+                    <button id="dropdownMenuButton" data-dropdown-toggle="dropdownAvatarName"
+                            class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-lg hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 dark:text-white"
+                            type="button">
+                        <span class="sr-only">Open user menu</span>
+                        @Model.currentUsername
+                        <div class="rounded-full bg-slate-300 m-3">
+                            @if (@Model.currentUserPic != null)
+                            {
+                                <img class="inline-block h-10 w-10 rounded-full  ring-white"  src="data:image/jpeg;base64,@Convert.ToBase64String(@Model.currentUserPic)" alt="Alternate Text" style="width:35px; height:35px " />
+
+
+                            }
+                            else
+                            {
+                                <img class="inline-block h-10 w-10 rounded-full  ring-white" src="/data/blank-profile-picture-973460_640.png" style="width:45px; height:45px " alt="">
+
+
+                            }
+                        </div>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div id="dropdownMenu"
+                         class="z-10 hidden normal-case dropdownMenu absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                            <div class="font-medium">@Model.currentEmail</div>
+                        </div>
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                            aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                            <li id="adminpanelButton" class="hidden">
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    Admin
+                                    Panel
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/auth/settings"
+                                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                            </li>
+                        </ul>
+                        <div class="py-2">
+                            <a href="/auth/logout"
+                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                Sign
+                                out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <!--Login Area-->
+                <div class="flex items-center space-x-8  mr-5">
+                    <a href="/auth/login" class=" hover:text-navy-blue transition duration-200">Login</a>
+                    <a href="/auth/register"
+                       class=" bg-slate-700 hover:text-navy-blue transition duration-300 px-3 py-2 rounded-md hover:bg-slate-600 ">Register</a>
+
+                </div>
+            }
+
+
+        </nav>
+    </div>
+    <script>
+        const dropdownBtn = document.querySelector("#dropdownMenuButton");
+        const dropdownMenu = document.querySelector('#dropdownMenu')
+        function toggleDropdown() {
+            dropdownMenu.classList.toggle("hidden")
+
+        }
+        dropdownBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            toggleDropdown();
+        });
+        document.documentElement.addEventListener("click", function () {
+            if (!document.querySelector('#dropdownMenu').classList.contains("hidden")) {
+                toggleDropdown();
+            }
+        });
+    </script>
+</header>
+@RenderBody()
+@await RenderSectionAsync("Scripts", required: false)
+</html>
