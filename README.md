@@ -1,7 +1,3 @@
-Süper, linkini inceledim. Depo herkese açık ama GitHub sayfasında dosya listelemesi araç tarafında tam yüklenmedi; buna rağmen sayfadan görebildiğim kesin bilgiler: proje adı **blogapp1web**, ana çözüm dosyası **blogapp1web.sln**, ana proje klasörü **WebApplication1**, lisans **MIT**, kullanılan dillere göre yığın **C# (%\~45) + HTML (%\~52) + JS/CSS**. Bu bilgilere dayanarak ve ASP.NET web uygulamalarının standart yapısını baz alarak, sana **eksiksiz ve düzenli bir README taslağı** hazırladım. Aşağıyı direkt `README.md` olarak depoya koyabilirsin. Doğrulayamadığım yerleri **TODO** işaretleriyle belirttim ki hızlıca doldurabilesin. (Kaynak: depo ana sayfası ve meta bilgileri. ([GitHub][1]))
-
----
-
 # blogapp1web
 
 **ITU MTAL öğrencileri** için geliştirilen basit ve öğretici bir **Blog Uygulaması**.
